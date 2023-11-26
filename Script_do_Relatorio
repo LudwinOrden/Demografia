@@ -1,0 +1,38 @@
+#*Instale o pacote "readxl", tire das aspas, caso não possua, caso possua, basta apenas
+#o library;
+
+#install.packages("readxl")
+library(readxl)
+
+
+#-->Ler a população dos recenseamentos em uma tabela
+Pop_Censo = data.frame(
+Anos = c("01/08/1872","31/12/1890","31/12/1900","01/09/1920","01/09/1940",
+"01/07/1950","01/09/1960","01/09/1970","01/09/1980","01/09/1991","01/08/2000",
+"01/08/2010","01/08/2022"),
+População_Masculina = c(9609,8820,11589,24321,18042,28824,51386,98593,161247,
+234948,277955,304850,299937),
+População_Feminina = c(9608,9147,11350,23766,17805,28454,52606,102382,169169,
+252171,303601,339770,344100),
+População_Total = c(19217,17967,22939,48087,35847,57108,103992,200975,330416,
+487119,581556,644620,644037))
+
+
+#*Vc precisa do "readxl" para ler as próximas tabelas, o texto dentro do read_excel 
+#muda de acordo com ocomputador do usuário, por isso na dúvida pode me perguntar, tentarei ajudar;
+
+#-->População residente divididos em faixa etária e sexo, do período de 1980 até 2020;
+Pop_residente = read_excel("C:/Users/joaov/OneDrive/Documentos/Pop. residente a cada 5 anos divididos em sexo(1980~2020).xlsx")
+
+#-->Óbitos por faixa etária e sexo;
+obitos = read_excel("C:/Users/joaov/OneDrive/Documentos/Número de óbitos por faixa etária.xlsx")
+
+#-->Óbitos Neonatal e Pósnatal;
+obitos_natal = read_excel("C:/Users/joaov/OneDrive/Documentos/obitos neonatal e posnatal.xlsx")
+
+#-->Óbitos acumulados; (Arrumar, colocar por sexo)
+obitos_ac = read_excel("C:/Users/joaov/OneDrive/Documentos/obitos acumulados.xlsx", sheet = 1)
+obitos_ac_natal = read_excel("C:/Users/joaov/OneDrive/Documentos/obitos acumulados.xlsx", sheet = 2)
+
+#-->Nascidos vivos por faixa etaria e estado civil da mãe;
+nc_civil = read_excel("C:/Users/joaov/OneDrive/Documentos/fec.xlsx")
