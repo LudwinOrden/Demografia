@@ -4,7 +4,7 @@
 #install.packages("readxl")
 library(readxl)
 
-
+#-------------------------------------------------------------------
 #-->Ler a população dos recenseamentos em uma tabela
 Pop_Censo = data.frame(
 Anos = c("01/08/1872","31/12/1890","31/12/1900","01/09/1920","01/09/1940",
@@ -17,7 +17,7 @@ População_Feminina = c(9608,9147,11350,23766,17805,28454,52606,102382,169169,
 População_Total = c(19217,17967,22939,48087,35847,57108,103992,200975,330416,
 487119,581556,644620,644037))
 
-
+#-------------------------------------------------------------------
 #*Vc precisa do "readxl" para ler as próximas tabelas, o texto dentro do read_excel 
 #muda de acordo com ocomputador do usuário, por isso na dúvida pode me perguntar, tentarei ajudar;
 
@@ -36,3 +36,78 @@ obitos_ac_natal = read_excel("C:/Users/joaov/OneDrive/Documentos/obitos acumulad
 
 #-->Nascidos vivos por faixa etaria e estado civil da mãe;
 nc_civil = read_excel("C:/Users/joaov/OneDrive/Documentos/fec.xlsx")
+
+#-------------------------------------------------------------------
+#*Manipulando os data.frames para pegar apenas oq nós interessa de cada parte;
+
+#pegando o número de habitantes residentes por ano;
+p_geral = data.frame( Ano = Pop_residente[[1]], 
+Sexo = Pop_residente[[2]],
+qt = Pop_residente[["Total"]])
+
+p_g_ano = data.frame(Ano = c(1980,1985,1990,1995,1996,2000,2005,2010,2015,2020),
+                     População = seq(1, (20/2)))
+i = 1
+j = 1
+while (i < 20){
+      p_g_ano[[2]][[j]]=p_geral[[3]][[i]]+p_geral[[3]][[i+1]]
+      i = i+2
+      j = j+1}
+#************************************
+#pegando o número de habitantes por faixa etaria;
+#0 ~ 4 anos
+p_geral_4 = data.frame( Ano = Pop_residente[[1]], 
+Sexo = Pop_residente[[2]],
+Pop_0_a_4_anos = Pop_residente[["0~4 anos"]])
+
+p_g_4 = data.frame(Ano = c(1980,1985,1990,1995,1996,2000,2005,2010,2015,2020),
+                   Pop_0_a_4anos = seq(1, (20/2)))
+i = 1
+j = 1
+while (i < 20){
+      p_g_4[[2]][[j]]=p_geral_4[[3]][[i]]+p_geral_4[[3]][[i+1]]
+      i = i+2
+      j = j+1}
+
+#5 ~ 9 anos
+p_geral_9 = data.frame( Ano = Pop_residente[[1]], 
+Sexo = Pop_residente[[2]],
+Pop_5_a_9_anos = Pop_residente[["5~9 anos"]])
+
+p_g_9 = data.frame(Ano = c(1980,1985,1990,1995,1996,2000,2005,2010,2015,2020),
+                   Pop_5_a_9anos = seq(1, (20/2)))
+i = 1
+j = 1
+while (i < 20){
+      p_g_9[[2]][[j]]=p_geral_9[[3]][[i]]+p_geral_9[[3]][[i+1]]
+      i = i+2
+      j = j+1}
+
+#10 ~ 14 anos
+p_geral_14 = data.frame( Ano = Pop_residente[[1]], 
+Sexo = Pop_residente[[2]],
+Pop_10_a_14_anos = Pop_residente[["10~14anos"]])
+
+p_g_14 = data.frame(Ano = c(1980,1985,1990,1995,1996,2000,2005,2010,2015,2020),
+                   Pop_10_a_14anos = seq(1, (20/2)))
+i = 1
+j = 1
+while (i < 20){
+      p_g_14[[2]][[j]]=p_geral_14[[3]][[i]]+p_geral_14[[3]][[i+1]]
+      i = i+2
+      j = j+1}
+
+
+#-------------------------------------------------------------------
+
+#Pegando os óbitos gerais;
+o_geral = data.frame( Anos = obitos[[1]], Sexo = obitos[[2]], qt = obitos[["Total"]])
+i = 1
+j = 1
+o_g_ano = data.frame( Ano = c(1980,1985,1990,1995,2000,2005,2010,2015,2020),
+                      Mortes = seq(1,(18/2)))
+while (i < 18){
+      o_g_ano[[2]][[j]]=o_geral[[3]][[i]]+o_geral[[3]][[i+1]]
+      i = i+2
+      j = j+1}
+
